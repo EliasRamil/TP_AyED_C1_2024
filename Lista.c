@@ -349,9 +349,8 @@ void agregarDatoEnOrden(Lista* l, DATO d, int comparar(DATO d1, DATO d2), bool c
             i++;
         }
 
-        if(i == l->iTamanioLista){
+        if(!bInsertado)
             agregarAlFinal(l, d);
-        }
 
     } else
         agregarAlInicio(l, d);

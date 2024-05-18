@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1715440724 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\estudiante.c
+
+1715440724 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1715440724 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\materia.c
+
+1715440724 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\materianota.c
+
+1715440724 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\cola.c
+
+1715986712 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"Lista.h"
+
+1715440724 d:\2024_unla\ayed_2024\tp_ayed_c1_2024\lista.h
+	<stdbool.h>
+
