@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "MateriaNota.h"
 
@@ -33,6 +34,14 @@ int getNota(MateriaNota* m){
 
 void setNotaMateriaNota(MateriaNota* m, int n){
     m->nota = n;
+}
+
+const char* MateriaNotaToString(MateriaNota* m){
+    char str[50];
+
+    sprintf(str, "ID: %d --- ID Materia: %d --- Nota: %d", m->id, m->idMateria, m->nota);
+
+    return strdup(str); // Duplicar y devolver una copia de la cadena
 }
 
 void destruirMateriaNota(MateriaNota* m){

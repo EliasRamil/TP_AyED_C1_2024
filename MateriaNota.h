@@ -11,6 +11,8 @@ int getNota(MateriaNota*);
 
 void setNotaMateriaNota(MateriaNota*, int);
 
+const char* MateriaNotaToString(MateriaNota*);
+
 void destruirMateriaNota(MateriaNota*);
 
 #endif // MATERIANOTA_H_INCLUDED
