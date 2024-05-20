@@ -51,6 +51,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="MateriaNota.h" />
+		<Unit filename="MateriaSistema.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="MateriaSistema.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
