@@ -1,5 +1,6 @@
-#TP AyED 2024
-##Enunciado 2024 - C1:
+# TP AyED 2024
+
+## Enunciado 2024 - C1:
 - *Realizar un programa que simule las principales funciones del sistema Guarani. El
 sistema debe tener una lista de materias, las materias una lista de inscriptos, y
 cada inscripto debe tener una lista de materias aprobadas con su promedio.*
@@ -7,7 +8,7 @@ cada inscripto debe tener una lista de materias aprobadas con su promedio.*
 cupo se debe generar una cola, para generar la cola se evaluará como prioridad
 primero la cantidad de materias aprobadas y luego el promedio del estudiante*
 
-##Estrategia de resolución:
+## Estrategia de resolución:
 - *El programa asume que no las materias aprobadas por los alumnos son materias que
 existen en el sistema.*
 - *El programa asume que todas las materias en los datos poseen IDs diferentes.*
@@ -29,8 +30,11 @@ es:*
     - *Matería Sistema:* TDA donde se maneja la informacion de la Materia en el Sistema.
     La misma se encarga de la inscripcion de alumnos analizando si el alumno ya aprobo la
     materia o no, y gestiona el cupo de inscriptos en base a la cantidad de materias
-    aprobadas y el promedio de la carrera.
+    aprobadas y el promedio de la carrera. Para inscribir a los alumnos se trabajo con una
+    Lista ya que el ordenar no es un metodo que respete la idea FIFO de una Cola, lo que se
+    hace es insertar al final de la lista y en caso de superar el cupo se realizan los
+    ordenamientos para cumplir el criterio y se elimina al ultimo de la misma.
 
-##Desarrollado y probado en:
+## Desarrollado y probado en:
 - *SO:* Debian 12 y Windows 10
 - *IDE:* Code::Blocks
