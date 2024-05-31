@@ -9,7 +9,7 @@ cupo se debe generar una cola, para generar la cola se evaluará como prioridad
 primero la cantidad de materias aprobadas y luego el promedio del estudiante*
 
 ## Estrategia de resolución:
-- *El programa asume que no las materias aprobadas por los alumnos son materias que
+- *El programa asume que las materias aprobadas por los alumnos son materias que
 existen en el sistema.*
 - *El programa asume que todas las materias en los datos poseen IDs diferentes.*
 - *El programa asume que todos los estudiantes en los datos poseen DNIs diferentes.*
