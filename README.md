@@ -27,7 +27,7 @@ es:*
     - *Materia:* TDA con los datos comunes a MateriaNota y MateriaSistema.
     - *MateriaNota* TDA utilizado por el estudiante para tener el registro de materias
     aprobadas con sus calificaciones.
-    - *Matería Sistema:* TDA donde se maneja la informacion de la Materia en el Sistema.
+    - *MateríaSistema:* TDA donde se maneja la informacion de la Materia en el Sistema.
     La misma se encarga de la inscripcion de alumnos analizando si el alumno ya aprobo la
     materia o no, y gestiona el cupo de inscriptos en base a la cantidad de materias
     aprobadas y el promedio de la carrera. Para inscribir a los alumnos se trabajo con una
