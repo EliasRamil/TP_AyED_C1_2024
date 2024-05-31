@@ -162,3 +162,84 @@
 	"CargarDatos.h"
 	"Lista.h"
 
+1717128003 source:d:\2024_unla\tp_ayed_c1_2024\cargardatos.c
+	<stdio.h>
+	<stdlib.h>
+	"Materia.h"
+	"MateriaNota.h"
+	"MateriaSistema.h"
+	"Estudiante.h"
+	"CargarDatos.h"
+
+1717128003 d:\2024_unla\tp_ayed_c1_2024\materia.h
+	"Lista.h"
+
+1717128003 d:\2024_unla\tp_ayed_c1_2024\lista.h
+	<stdbool.h>
+
+1717128003 d:\2024_unla\tp_ayed_c1_2024\materianota.h
+	"Materia.h"
+
+1717128003 d:\2024_unla\tp_ayed_c1_2024\materiasistema.h
+	"Lista.h"
+	"Materia.h"
+	"Estudiante.h"
+
+1717128003 d:\2024_unla\tp_ayed_c1_2024\estudiante.h
+	"Lista.h"
+	"Materia.h"
+
+1717128003 d:\2024_unla\tp_ayed_c1_2024\cargardatos.h
+	"Lista.h"
+
+1717128003 source:d:\2024_unla\tp_ayed_c1_2024\estudiante.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Estudiante.h"
+	"MateriaNota.h"
+	"Funciones.h"
+
+1717128003 d:\2024_unla\tp_ayed_c1_2024\funciones.h
+	<stdbool.h>
+
+1717128003 source:d:\2024_unla\tp_ayed_c1_2024\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"MateriaNota.h"
+	"MateriaSistema.h"
+	"Estudiante.h"
+	"Funciones.h"
+	"CargarDatos.h"
+	"Lista.h"
+
+1717128003 source:d:\2024_unla\tp_ayed_c1_2024\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"Lista.h"
+
+1717128003 source:d:\2024_unla\tp_ayed_c1_2024\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Funciones.h"
+
+1717128003 source:d:\2024_unla\tp_ayed_c1_2024\materia.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Materia.h"
+
+1717128003 source:d:\2024_unla\tp_ayed_c1_2024\materianota.c
+	<stdio.h>
+	<stdlib.h>
+	"MateriaNota.h"
+
+1717128003 source:d:\2024_unla\tp_ayed_c1_2024\materiasistema.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"MateriaSistema.h"
+	"Funciones.h"
+
