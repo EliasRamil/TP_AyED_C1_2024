@@ -9,13 +9,18 @@ struct Materia{
     char nombre[30];
 };
 
-Materia* crearMateria(int id, char nombre[30], int cupo){
+Materia* crearMateria(int id, char nombre[30]){
     Materia* m = (Materia*)malloc(sizeof(Materia));
 
     m->id = id;
     strcpy(m->nombre, nombre);
 
     return m;
+}
+
+void mostrarMateria(Materia* m){
+    printf("ID: %d\n", m->id);
+    printf("Nombre: %s\n", m->nombre);
 }
 
 int getIdMateria(Materia* m){

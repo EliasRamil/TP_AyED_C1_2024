@@ -1,31 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include "MateriaNota.h"
 
 struct MateriaNota{
-    int id;
-    int idMateria;
+    Materia* materia;
     int nota;
 };
 
-MateriaNota* crearMateriaNota(int id, int idMateria, int nota){
-    MateriaNota* m = (MateriaNota*)malloc(sizeof(MateriaNota));
+MateriaNota* crearMateriaNota(Materia* m, int nota){
+    MateriaNota* mn = (MateriaNota*)malloc(sizeof(MateriaNota));
 
-    m->id = id;
-    m->idMateria = idMateria;
-    m->nota = nota;
+    mn->materia = m;
+    mn->nota = nota;
 
-    return m;
+    return mn;
+}
+
+void mostrarMateriaNota(MateriaNota* m){
+    mostrarMateria(m->materia);
+    printf("Calificacion: %d\n", m->nota);
 }
 
 int getIdMateriaNota(MateriaNota* m){
-    return m->id;
+    return getIdMateria(m->materia);
 }
 
-int getIdMateriaMateriaNota(MateriaNota* m){
-    return m->idMateria;
+const char* getNombreMateriaNota(MateriaNota* m){
+    return getNombreMateria(m->materia);
 }
 
 int getNota(MateriaNota* m){
@@ -34,14 +36,6 @@ int getNota(MateriaNota* m){
 
 void setNotaMateriaNota(MateriaNota* m, int n){
     m->nota = n;
-}
-
-const char* MateriaNotaToString(MateriaNota* m){
-    char str[50];
-
-    sprintf(str, "ID: %d --- ID Materia: %d --- Nota: %d", m->id, m->idMateria, m->nota);
-
-    return strdup(str); // Duplicar y devolver una copia de la cadena
 }
 
 void destruirMateriaNota(MateriaNota* m){

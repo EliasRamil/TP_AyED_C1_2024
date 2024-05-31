@@ -5,12 +5,12 @@
 
 typedef struct Materia Materia;
 
-Materia* crearMateria(int id, char nombre[30], int cupo);
+Materia* crearMateria(int id, char nombre[30]);
+
+void mostrarMateria(Materia*);
 
 int getIdMateria(Materia*);
 const char* getNombreMateria(Materia*);
-int getCupoMateria(Materia*);
-const Lista* getListaInscriptos(Materia*);
 
 void setNombreMateria(Materia*, char nombre[30]);
 

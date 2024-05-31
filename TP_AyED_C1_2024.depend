@@ -1,42 +1,164 @@
 # depslib dependency file v1.0
-1715995184 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\estudiante.c
+1717077761 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\estudiante.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Estudiante.h"
 	"MateriaNota.h"
+	"Funciones.h"
 
-1715995184 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\main.c
+1717078256 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\main.c
 	<stdio.h>
 	<stdlib.h>
+	"Funciones.h"
 
-1716242948 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\materia.c
+1716884591 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\materia.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Materia.h"
 
-1715995184 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\materianota.c
+1716974852 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\materianota.c
 	<stdio.h>
 	<stdlib.h>
-	<string.h>
 	"MateriaNota.h"
 
 1715440724 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\cola.c
 
-1715991117 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\lista.c
+1717078161 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\lista.c
 	<stdio.h>
 	<stdlib.h>
 	"Lista.h"
 
-1715440724 d:\2024_unla\ayed_2024\tp_ayed_c1_2024\lista.h
+1716966041 d:\2024_unla\ayed_2024\tp_ayed_c1_2024\lista.h
 	<stdbool.h>
 
-1715991117 d:\2024_unla\ayed_2024\tp_ayed_c1_2024\materia.h
+1716971431 d:\2024_unla\ayed_2024\tp_ayed_c1_2024\materia.h
 	"Lista.h"
 
-1715995184 d:\2024_unla\ayed_2024\tp_ayed_c1_2024\materianota.h
+1716886728 d:\2024_unla\ayed_2024\tp_ayed_c1_2024\materianota.h
+	"Materia.h"
 
-1715995184 d:\2024_unla\ayed_2024\tp_ayed_c1_2024\estudiante.h
+1716970890 d:\2024_unla\ayed_2024\tp_ayed_c1_2024\estudiante.h
+	"Lista.h"
+	"Materia.h"
+
+1717077761 source:/home/morgan/Documentos/TP_AyED_C1_2024/Estudiante.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Estudiante.h"
+	"MateriaNota.h"
+	"Funciones.h"
+
+1716970890 /home/morgan/Documentos/TP_AyED_C1_2024/Estudiante.h
+	"Lista.h"
+	"Materia.h"
+
+1716966041 /home/morgan/Documentos/TP_AyED_C1_2024/Lista.h
+	<stdbool.h>
+
+1716886728 /home/morgan/Documentos/TP_AyED_C1_2024/MateriaNota.h
+	"Materia.h"
+
+1717078256 source:/home/morgan/Documentos/TP_AyED_C1_2024/main.c
+	<stdio.h>
+	<stdlib.h>
+	"Funciones.h"
+
+1716884591 source:/home/morgan/Documentos/TP_AyED_C1_2024/Materia.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Materia.h"
+
+1716971431 /home/morgan/Documentos/TP_AyED_C1_2024/Materia.h
+	"Lista.h"
+
+1716974852 source:/home/morgan/Documentos/TP_AyED_C1_2024/MateriaNota.c
+	<stdio.h>
+	<stdlib.h>
+	"MateriaNota.h"
+
+1717075154 source:/home/morgan/Documentos/TP_AyED_C1_2024/MateriaSistema.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"MateriaSistema.h"
+	"Funciones.h"
+
+1716975315 /home/morgan/Documentos/TP_AyED_C1_2024/MateriaSistema.h
+	"Lista.h"
+	"Materia.h"
+	"Estudiante.h"
+
+1717078161 source:/home/morgan/Documentos/TP_AyED_C1_2024/Lista.c
+	<stdio.h>
+	<stdlib.h>
+	"Lista.h"
+
+1717060594 /home/morgan/Documentos/TP_AyED_C1_2024/Funciones.h
+	<stdbool.h>
+
+1717077903 source:/home/morgan/Documentos/TP_AyED_C1_2024/Funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<conio.h>
+	"MateriaNota.h"
+	"MateriaSistema.h"
+	"Estudiante.h"
+	"Funciones.h"
+
+1716965361 /home/morgan/Documentos/TP_AyED_C1_2024/CargarDatos.h
+	"Lista.h"
+
+1717076910 source:/home/morgan/Documentos/TP_AyED_C1_2024/CargarDatos.c
+	<stdio.h>
+	<stdlib.h>
+	"Materia.h"
+	"MateriaNota.h"
+	"MateriaSistema.h"
+	"Estudiante.h"
+	"CargarDatos.h"
+
+1717127025 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\cargardatos.c
+	<stdio.h>
+	<stdlib.h>
+	"Materia.h"
+	"MateriaNota.h"
+	"MateriaSistema.h"
+	"Estudiante.h"
+	"CargarDatos.h"
+
+1716975315 d:\2024_unla\ayed_2024\tp_ayed_c1_2024\materiasistema.h
+	"Lista.h"
+	"Materia.h"
+	"Estudiante.h"
+
+1716965361 d:\2024_unla\ayed_2024\tp_ayed_c1_2024\cargardatos.h
+	"Lista.h"
+
+1717060594 d:\2024_unla\ayed_2024\tp_ayed_c1_2024\funciones.h
+	<stdbool.h>
+
+1717075154 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\materiasistema.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"MateriaSistema.h"
+	"Funciones.h"
+
+1717126962 source:d:\2024_unla\ayed_2024\tp_ayed_c1_2024\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"MateriaNota.h"
+	"MateriaSistema.h"
+	"Estudiante.h"
+	"Funciones.h"
+	"CargarDatos.h"
 	"Lista.h"
 

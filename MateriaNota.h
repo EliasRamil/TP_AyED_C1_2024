@@ -1,17 +1,19 @@
 #ifndef MATERIANOTA_H_INCLUDED
 #define MATERIANOTA_H_INCLUDED
 
+#include "Materia.h"
+
 typedef struct MateriaNota MateriaNota;
 
-MateriaNota* crearMateriaNota(int id, int idMateria, int nota);
+MateriaNota* crearMateriaNota(Materia*, int nota);
+
+void mostrarMateriaNota(MateriaNota*);
 
 int getIdMateriaNota(MateriaNota*);
-int getIdMateriaMateriaNota(MateriaNota*);
+const char* getNombreMateriaNota(MateriaNota*);
 int getNota(MateriaNota*);
 
 void setNotaMateriaNota(MateriaNota*, int);
-
-const char* MateriaNotaToString(MateriaNota*);
 
 void destruirMateriaNota(MateriaNota*);
 

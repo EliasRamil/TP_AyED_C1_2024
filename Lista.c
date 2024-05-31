@@ -4,378 +4,213 @@
 #include "Lista.h"
 
 typedef struct Nodo {
-    DATO dato;
+    void* dato;
     struct Nodo* siguiente;
 } Nodo;
 
 struct Lista {
-    Nodo* inicio;
-    int iTamanioLista;
+    Nodo* inicial;
+    int tamanioLista;
 };
 
-//-----------------------------------------------------------Constructor-------------------------------------------------------
 Lista* crearLista(){
     return (Lista*)calloc(1, sizeof(Lista));
 }
 
-//-------------------------------------------------------------Getter-----------------------------------------------------------
 int getTamanioLista(Lista* l){
-    return l->iTamanioLista;
+    return l->tamanioLista;
 }
 
-//-----------------------------------------------------Funciones ocultas de la Lista-------------------------------------------
-/*
-    PRE: La lista debe haber sido creada.
-    POST: Indica si la posicion indicada existe o no en la lista.
- */
-bool existePosicion(Lista* l, int iPosicion) {
-    return ((iPosicion >= 0) && (iPosicion < (l->iTamanioLista))) ? true : false;
+void mostrarLista(Lista* l, void callback(void*)){
+    int tam = l->tamanioLista;
+    for(int i=0; i<tam; i++){
+        callback(obtenerDatoEnLaLista(l, i));
+    }
 }
 
-//--------------------------------------------------Funciones Basicas de la lista-----------------------------------------------
-void agregarAlInicio(Lista* l, DATO d){
+void insertarDatoAlInicioEnLaLista(Lista* l, void* d){
     Nodo* n = (Nodo*)malloc(sizeof(Nodo));
 
     n->dato = d;
-    n->siguiente = l->inicio;
-    l->inicio = n;
+    n->siguiente = l->inicial;
+    l->inicial = n;
 
-    l->iTamanioLista++;
+    l->tamanioLista++;
 }
 
-void agregarALaLista(Lista* l, int iPos, DATO d){
+bool insertarDatoEnLaLista(Lista* l, int pos, void* d){
+    bool bInsertado = false;
 
-    if(iPos >= 0 && iPos <= l->iTamanioLista){
+    if(pos >= 0 && pos <= l->tamanioLista){
 
-        if(iPos == 0 || iPos == l->iTamanioLista){
-
-            if(iPos == 0){
-                agregarAlInicio(l, d);
-            } else
-                agregarAlFinal(l, d);
-
+        if(pos == 0){
+            insertarDatoAlInicioEnLaLista(l, d);
+            bInsertado = true;
         } else {
-
             Nodo* n = (Nodo*)malloc(sizeof(Nodo));
-            Nodo* actual = l->inicio;
-
             n->dato = d;
+            Nodo* actual = l->inicial;
 
-            bool bInsertado = false;
-            int i = 0;
-            while(actual != NULL && !bInsertado){
-
-                if(i == iPos-1){
-                    n->siguiente = actual->siguiente;
-                    actual->siguiente = n;
-                    bInsertado = true;
-                }
-
-                i++;
+            for(int i=0; i<pos-1; i++)
                 actual = actual->siguiente;
-            }
 
-            l->iTamanioLista++;
+            n->siguiente = actual->siguiente;
+            actual->siguiente = n;
+            bInsertado = true;
+            l->tamanioLista++;
         }
 
-    } else
-        puts("No se pudo agregar elemento a la lista");
+    }
 
+    return bInsertado;
 }
 
-void agregarAlFinal(Lista* l, DATO d){
-    Nodo* n = (Nodo*)malloc(sizeof(Nodo));
-    n->dato = d;
-    n->siguiente = NULL;
+void insertarDatoAlFinalDeLaLista(Lista* l, void* d){
+    insertarDatoEnLaLista(l, l->tamanioLista, d);
+}
 
-    if(l->iTamanioLista != 0){
+void insertarDatoEnOrdenEnLista(Lista* l, void* d, bool callback(void*, void*)){
+    Nodo* actual = l->inicial;
+    Nodo* anterior = NULL;
 
-        Nodo* actual = l->inicio;
-        while (actual->siguiente != NULL) {
+    while(actual != NULL && callback(actual->dato, d)){
+        anterior = actual;
+        actual = anterior->siguiente;
+    }
+
+    Nodo* nuevo = (Nodo*)malloc(sizeof(Nodo));
+    nuevo->dato = d;
+    nuevo->siguiente = actual;
+    if(anterior == NULL){
+        l->inicial = nuevo;
+    } else {
+        anterior->siguiente = nuevo;
+    }
+
+    l->tamanioLista++;
+}
+
+
+void* obtenerDatoInicialDeLaLista(Lista* l){
+    return l->inicial->dato;
+}
+
+void* obtenerDatoEnLaLista(Lista* l, int pos){
+    void * d = NULL;
+
+    if(pos >= 0 && pos < l->tamanioLista){
+        Nodo* actual = l->inicial;
+
+        for(int i=0; i<pos; i++)
+            actual = actual->siguiente;
+
+        d = actual->dato;
+    }
+
+    return d;
+}
+
+void* obtenerDatoFinalDeLaLista(Lista* l){
+    return obtenerDatoEnLaLista(l, l->tamanioLista-1);
+}
+
+void* eliminarDatoInicialDeLaLista(Lista* l){
+    Nodo* eliminar = l->inicial;
+    void* d = eliminar->dato;
+    l->inicial = eliminar->siguiente;
+    free(eliminar);
+    l->tamanioLista--;
+
+    return d;
+}
+
+void* eliminarDatoDeLaLista(Lista* l, int pos){
+    void* d = NULL;
+
+    if(pos >= 0 && pos<l->tamanioLista){
+        Nodo* actual = l->inicial;
+        Nodo* anterior = NULL;
+
+        for(int i=0; i<pos; i++){
+            anterior = actual;
             actual = actual->siguiente;
         }
 
-        actual->siguiente = n;
-
-    } else
-        l->inicio = n;
-
-    l->iTamanioLista++;
-}
-
-DATO obtenerDatoInicial(Lista* l){
-    return obtenerDatoDeLaLista(l, 0);
-}
-
-DATO obtenerDatoDeLaLista(Lista* l, int iPos){
-    DATO d = NULL;
-
-    if(l->iTamanioLista != 0 && existePosicion(l, iPos)){
-
-        Nodo* n = l->inicio;
-        bool bEncontrado = false;
-        int iContador = 0;
-
-        while(!bEncontrado && n != NULL){
-
-            iContador++;
-            if(iContador == iPos+1){
-                d = n->dato;
-                bEncontrado = true;
-            }
-
-            if (n != NULL) {
-                n = n->siguiente;
-            }
-        }
-    }
-
-    return d;
-}
-
-DATO obtenerDatoFinal(Lista* l){
-    return obtenerDatoDeLaLista(l, l->iTamanioLista-1);
-}
-
-DATO eliminarDatoInicial(Lista* l){
-    DATO d = NULL;
-
-    if(l->iTamanioLista > 0){
-        Nodo* actual = l->inicio;
-
         d = actual->dato;
-        l->inicio = l->inicio->siguiente;
+        if(anterior == NULL){
+            l->inicial = actual->siguiente;
+        } else {
+            anterior->siguiente = actual->siguiente;
+        }
+
         free(actual);
-
-        l->iTamanioLista--;
-    } else
-        puts("La lista esta vacia...");
-
+        l->tamanioLista--;
+    }
 
     return d;
 }
 
-DATO eliminarDatoDeLaLista(Lista* l, int iPos){
-    DATO d = NULL;
+void* eliminarDatoFinalDeLaLista(Lista* l){
+    return eliminarDatoDeLaLista(l, l->tamanioLista-1);
+}
 
-    if(existePosicion(l, iPos) && l->iTamanioLista > 0){
+Lista* duplicar(Lista* l){
+    Lista* l2 = crearLista();
+    int tam = l->tamanioLista;
 
-        if(iPos != 0){
-            Nodo* anterior = NULL;
-            Nodo* actual = l->inicio;
-            int i = 0;
-            bool bEliminado = false;
+    for(int i=0; i<tam; i++)
+        insertarDatoAlFinalDeLaLista(l2, obtenerDatoEnLaLista(l, i));
 
-            while(actual != NULL && !bEliminado){
+    return l2;
+}
 
-                if(i == iPos){
-                    d = actual->dato;
-                    bEliminado = true;
-                }
+void ordenarLista(Lista* l, bool callback(void*, void*)){
+    int tam = l->tamanioLista;
+    void* d1;
+    void* d2;
 
-                if(!bEliminado){
-                    anterior = actual;
-                    actual = actual->siguiente;
-                } else {
-                    anterior->siguiente = actual->siguiente;
-                    free(actual);
-                    actual = NULL;
-                    l->iTamanioLista--;
-                }
+    for(int i=0; i<tam;i++){
+        for(int j=i+1; j<tam; j++){
+            d1 = obtenerDatoEnLaLista(l, i);
+            d2 = obtenerDatoEnLaLista(l, j);
 
-                i++;
+            if(callback(d1, d2)){
+                insertarDatoEnLaLista(l, j, d1);
+                insertarDatoEnLaLista(l, i, d2);
+
+                eliminarDatoDeLaLista(l, i+1);
+                eliminarDatoDeLaLista(l, j+1);
             }
-
-        } else
-            d = eliminarDatoInicial(l);
-
-    } else
-        puts("La lista esta vacia...");
-
-    return d;
+        }
+    }
 }
 
-DATO eliminarDatoFinal(Lista* l){
-    return eliminarDatoDeLaLista(l, l->iTamanioLista-1);
-}
+int buscarDato(Lista* l,void* d, bool callback(void*, void*)){
+    int posicion = -1, contador = 0;
+    Nodo* actual = l->inicial;
 
-//--------------------------------------------------Funciones Extras de la lista-------------------------------------------------
-int posicionrDatoEnLaLista(Lista* l, DATO d){
-    Nodo* actual = l->inicio;
-    int iPos = DATO_NO_ENCONTRADO, i = 0;
+    while(actual != NULL && posicion == -1){
 
-    while(iPos == DATO_NO_ENCONTRADO && actual != NULL){
+        if(callback(actual->dato, d))
+            posicion = contador;
 
-        if(actual->dato == d)
-            iPos = i;
-
-        i++;
         actual = actual->siguiente;
+        contador++;
     }
 
-    return iPos;
+    return posicion;
 }
 
-int buscarDatoEnLaLista(Lista* l, DATO dato_Buscado, bool buscarPor(DATO dato_Buscado, DATO dato)){
-    int iContador = 0, iPosicion = DATO_NO_ENCONTRADO, iTam = l->iTamanioLista;
-    DATO aux;
-
-    while ((iContador < iTam) && (iPosicion == DATO_NO_ENCONTRADO)) {
-        aux = obtenerDatoDeLaLista(l, iContador);
-
-        if (buscarPor(dato_Buscado, aux))
-            iPosicion = iContador;
-
-        iContador++;
-    }
-
-    return iPosicion;
-}
-
-Lista* buscarTodosLosDatosQueCumplanUnCriterioEnLaLista(Lista* l, DATO dato_Buscado, bool buscarPor(DATO dato_Buscado, DATO dato)){
-    Lista* listaPosiciones = crearLista();
-    int iPosicion = 0, iTam = l->iTamanioLista;
-
-    while (iPosicion < iTam) {
-
-        if (buscarPor(dato_Buscado, obtenerDatoDeLaLista(l, iPosicion))) {
-            int* pos = malloc(sizeof(int));
-            *pos = iPosicion;
-            agregarAlFinal(listaPosiciones, (DATO)pos);
-        }
-
-        iPosicion++;
-    }
-
-    return listaPosiciones;
-}
-
-void mostrarLista(Lista* l, void mostrarDato(DATO)){
-    DATO d;
-    int iTam = l->iTamanioLista;
-
-    for(int i=0; i<iTam; i++){
-        d = obtenerDatoDeLaLista(l, i);
-        printf("%d) ", i);
-        mostrarDato(d);
-        puts("");
-    }
-
-}
-
-void invertirDatos(Lista* l, int iPosicion1, int iPosicion2){
-
-    if(iPosicion1 != iPosicion2 && existePosicion(l, iPosicion1) && existePosicion(l, iPosicion2)){
-            int iAux;
-
-            if (iPosicion1 > iPosicion2) {
-                iAux = iPosicion1;
-                iPosicion1 = iPosicion2;
-                iPosicion2 = iAux;
-            }
-
-            DATO d1, d2;
-
-            d1 = obtenerDatoDeLaLista(l, iPosicion1);
-            d2 = obtenerDatoDeLaLista(l, iPosicion2);
-
-            agregarALaLista(l, iPosicion2, d1);
-            agregarALaLista(l, iPosicion1, d2);
-
-            d1 = eliminarDatoDeLaLista(l, iPosicion1+1);
-            d2 = eliminarDatoDeLaLista(l, iPosicion2+1);
-    }
-
-}
-
-bool ascendente(int iComparacion) {
-    return (iComparacion == MAYOR) ? true : false;
-}
-
-bool descendente(int iComparacion) {
-    return (iComparacion == MENOR) ? true : false;
-}
-
-void ordenarLista(Lista* l, int comparar(DATO d1, DATO d2), bool criterio(int)){
-    DATO d1, d2;
-    int iTam = l->iTamanioLista;
-
-    for(int i=0; i<iTam; i++){
-
-        for(int j=(i+1); j<iTam; j++){
-
-            d1 = obtenerDatoDeLaLista(l, i);
-            d2 = obtenerDatoDeLaLista(l, j);
-
-            if (criterio(comparar(d1, d2)))
-                invertirDatos(l, i, j);
-
-        }
-
-    }
-
-}
-
-Lista* duplicarLista(Lista* l){
-    Lista* ld = crearLista();
-    DATO d;
-    int iTam = l->iTamanioLista;
-
-    for(int i=0; i<iTam; i++){
-
-        d = obtenerDatoDeLaLista(l, i);
-        agregarALaLista(ld, i, d);
-
-    }
-
-    return ld;
-}
-
-void agregarDatoEnOrden(Lista* l, DATO d, int comparar(DATO d1, DATO d2), bool criterio(int)){
-    if(l->iTamanioLista > 0){
-        bool bInsertado = false;
-        int i = 0, iTam = l->iTamanioLista;
-        DATO aux;
-
-        while(i < iTam && !bInsertado){
-
-            aux = obtenerDatoDeLaLista(l, i);
-
-            if(criterio(comparar(aux, d))){
-                agregarALaLista(l, i, d);
-                bInsertado = true;
-            }
-
-            i++;
-        }
-
-        if(!bInsertado)
-            agregarAlFinal(l, d);
-
-    } else
-        agregarAlInicio(l, d);
-
-}
-
-//-----------------------------------------------------------Destructores-------------------------------------------------------
 void destruirLista(Lista* l){
-    DATO d = NULL;
-
-    while(l->iTamanioLista > 0){
-        d = eliminarDatoInicial(l);
-        free(d);
-    }
+    while(l->tamanioLista > 0)
+        eliminarDatoInicialDeLaLista(l);
 
     free(l);
 }
 
-void destruirListaYDatos(Lista* l, void eliminarDatos(DATO)){
-    DATO d;
-
-    while (l->iTamanioLista > 0) {
-        d = eliminarDatoInicial(l);
-        eliminarDatos(d);
-    }
+void destruirListaYDatos(Lista* l, void callback(void*)){
+    while(l->tamanioLista > 0)
+        callback(eliminarDatoInicialDeLaLista(l));
 
     free(l);
 }

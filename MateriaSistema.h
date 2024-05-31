@@ -3,15 +3,25 @@
 
 #include "Lista.h"
 #include "Materia.h"
+#include "Estudiante.h"
 
 typedef struct MateriaSistema MateriaSistema;
 
 MateriaSistema* crearMateriaSistema(Materia*, int);
 
+void mostrarMateriaSistema(MateriaSistema*);
+void mostrarMateriaSistemaConInscriptos(MateriaSistema*);
+
 int getIdMateriaSistema(MateriaSistema*);
 const char* getNombreMateriaSistema(MateriaSistema*);
 int getCupoMateriaSistema(MateriaSistema*);
-const Lista* getListaInscriptosMateriaSistema(MateriaSistema*);
+// Retorno un duplicado de la lista para asegurarme que no sea modificada en otra parte
+// del programa.
+Lista* getListaInscriptosMateriaSistema(MateriaSistema*);
+
+void setCupoMateriaSistema(MateriaSistema*, int);
+
+void agregarEstudianteAMateria(MateriaSistema*, Estudiante*);
 
 void destruirMateriaSistema(MateriaSistema*);
 

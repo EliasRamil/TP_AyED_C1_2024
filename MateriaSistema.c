@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "MateriaSistema.h"
+#include "Funciones.h"
 
 struct MateriaSistema{
     Materia* materia;
@@ -20,6 +21,18 @@ MateriaSistema* crearMateriaSistema(Materia* mat, int cupo){
     return m;
 }
 
+void mostrarMateriaSistema(MateriaSistema* m){
+    puts("------------MATERIA SISTEMA------------");
+    mostrarMateria(m->materia);
+    printf("Cupo: %d\n", m->cupo);
+}
+
+void mostrarMateriaSistemaConInscriptos(MateriaSistema* m){
+    mostrarMateriaSistema(m);
+    puts("----------INSCRIPTOS----------");
+    mostrarLista(m->inscriptos, mostrarEstudiantes);
+}
+
 int getIdMateriaSistema(MateriaSistema* m){
     return getIdMateria(m->materia);
 }
@@ -32,10 +45,30 @@ int getCupoMateriaSistema(MateriaSistema* m){
     return m->cupo;
 }
 
-const Lista* getListaInscriptosMateriaSistema(MateriaSistema* m){
-    return m->inscriptos;
+Lista* getListaInscriptosMateriaSistema(MateriaSistema* m){
+    return duplicar(m->inscriptos);
+}
+
+void setCupoMateriaSistema(MateriaSistema* m, int cupo){
+    m->cupo = cupo;
+}
+
+void agregarEstudianteAMateria(MateriaSistema* m, Estudiante* e){
+    // Si el valor es -1 es porque no la tiene aprobada
+    int materiaAprobada = buscarDato(getMateriasAprobadasDelEstudiante(e), (void*)m, esMateria);
+
+    if(materiaAprobada == -1)
+        insertarDatoAlFinalDeLaLista(m->inscriptos, (void*)e);
+
+    if(m->cupo < getTamanioLista(m->inscriptos)){
+        ordenarLista(m->inscriptos, compararPromediosEstudiantes);
+        ordenarLista(m->inscriptos, compararCantidadDeMateriasAprobadas);
+        eliminarDatoFinalDeLaLista(m->inscriptos);
+    }
+
 }
 
 void destruirMateriaSistema(MateriaSistema* m){
+    destruirLista(m->inscriptos);
     free(m);
 }
