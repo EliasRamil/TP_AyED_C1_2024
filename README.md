@@ -36,5 +36,5 @@ es:*
     ordenamientos para cumplir el criterio y se elimina al ultimo de la misma.
 
 ## Desarrollado y probado en:
-- *SO:* Debian 12 y Windows 10
+- *SO:* Debian 11 y Windows 10
 - *IDE:* Code::Blocks
